@@ -1,0 +1,10 @@
+{
+    "name": "Password Manager",
+    "version": "1.0.0",
+    "manifest_version": 3,
+    "author": "obamna",
+    "action":{
+        "default_popup": "index.html",
+        "default_title": "Password Manager"
+    }
+}
