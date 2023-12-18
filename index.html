@@ -6,18 +6,31 @@
         <link href="styles.css" rel="stylesheet">
     </head>
     <body>
-        <div class="container mt-3" style="width: 450px;">
-            <h2 class="text-center">Password manager</h2>
-            <ol class="Password-List">
-                <li></li>
-            </ol>
-        </div>
-        <template id="Password-Item">
-            <div class="Website-Name">
-                <p id="Website-Url"></p>
-                <p id="E-Mailadress"></p>
+        <div class="container" onmouseover="displayBurgerMenu()" onmouseleave="hideBurgerMenu()">
+          <div class="item">
+            <div>
+              <div class="website-Name">
+                <h3 class="name">
+                  Google
+                </h3>
+              </div>
+                <div class="website-Email">
+                  <p class="text-gray-600">
+                    google@gmail.com
+                  </p>
+                </div>
             </div>
-        </template>
-    </body>
-    <script src="LoadPage.js"></script>
+            <div class="burgermenu-container">
+              <button class="burgermenu" id="burgermenuId" onclick="openBurgerMenu()">
+                <ul class="burgermenu-list" id="burgermenu-listId" >
+                  <li>Edit</li>
+                  <li>Copy Password</li>
+                  <li>Copy Email</li>
+                </ul>
+              </button>
+            </div>
+          </div>
+        </div>
+      </body>
+    <script src="./JavaScripts/Scripts.js"></script>
 </html>
