@@ -1,46 +1,48 @@
 body {
-    overflow: hidden;
+    overflow: visible;
     align-items: center;
     justify-content: center;
     height: 100vh;
 }
-
-.container  {
-    background-color: #3498db;
-    transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
-    background-color: var(--card-color); /* Replace with your actual card background color */
-    color: var(--card-foreground-color); /* Replace with your actual card text color */
-    box-shadow: 0 5px 2px 0 rgba(0, 0, 0, 0.05); /* Adjust as needed */
-    margin-bottom: 1rem; /* Adjust as needed */
-  }
-  .container:hover {
-    background-color: rgba(0, 0, 0, 0.05);
-  }
+  
 .item{
   display: flex;
-}
-.burgermenu-container{
-  margin-left: auto;
-  padding-block: 5;
-  padding-inline: 5px;
-}
-.burgermenu {
-    display: none;
-    justify-content: center;
-    opacity: 0.5;
-    height: 2.5rem; /* or your preferred height */
-    border-radius: 50%;
-    padding: 1.13rem; /* or your preferred padding */
+  transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
+  box-shadow: 0 5px 2px 0 rgba(0, 0, 0, 0.05); /* Adjust as needed */
   }
+  .item:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.burgermenu-container{
+  justify-content: right;
+  margin-left: auto;
+  padding-top: 2.5em;
+  padding-inline: 10px;
+}
+
+.burgermenu {
+  display: none;
+  justify-content: center;
+  opacity: 0.5;
+  height: 2.5rem; /* or your preferred height */
+  border-radius: 50%;
+  padding: 1.13rem; /* or your preferred padding */
+}
+
 .burgermenu-list {
   list-style: none;
   display: none;
+  border: 2px;
+  border-radius: 5px;
 }
+
 .website-Name {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
   }
+
 .website-Email{
     padding: 6px;
 }
