@@ -5,13 +5,16 @@ body {
     height: 100vh;
     min-width:300px;
 }
+ul{
+  padding: 0px
+}
   
-.item{
+.itemContainer{
   display: flex;
   transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
   box-shadow: 0 5px 2px 0 rgba(0, 0, 0, 0.05); /* Adjust as needed */
   }
-  .item:hover {
+  .itemContainer:hover {
     background-color: rgba(0, 0, 0, 0.05);
 }
 
@@ -67,14 +70,18 @@ body {
   display: inline-block;
   }
   .plus {
-    height: 24px;
-    width: 24px;
     display: inline-block;
     color: white;
-    font-size: 24px;
-    line-height: 24px;
+    font-size: 44px;
+    line-height: 50px;
     text-align: center;
+    width: 100%;
+    height: 100%;
   }
   .plus::before {
     content: "+";
+  }
+  .addItem:hover{
+    background-color: rgba(0, 0, 0, 0.7);
+    cursor: pointer;
 }
