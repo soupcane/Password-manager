@@ -6,11 +6,11 @@
         <link href="styles.css" rel="stylesheet">
     </head>
     <body>
-        <div class="container" onmouseover="displayBurgerMenu()" onmouseleave="hideBurgerMenu()">
+        <div class="itemContainer" id="passItem">
           <div class="item">
             <div>
               <div class="website-Name">
-                <h3 class="Name">
+                <h3 class="Name" style="padding-left: 5px;">
                   Google
                 </h3>
               </div>
@@ -21,7 +21,7 @@
                 </div>
             </div>
             <div class="burgermenu-container">
-              <button class="burgermenu" id="burgermenuId" onclick="openBurgerMenu()"></button>
+              <button class="burgermenu" id="burgermenuId"></button>
               <ul class="burgermenu-list" id="burgermenu-listId" >
                 <li>Edit</li>
                 <li>Copy Password</li>
@@ -31,5 +31,8 @@
           </div>
         </div>
       </body>
+      <span class="addItem">
+        <div class="plus"></div>
+      </span>
     <script src="./JavaScripts/Scripts.js"></script>
 </html>

@@ -3,6 +3,7 @@ body {
     align-items: center;
     justify-content: center;
     height: 100vh;
+    min-width:300px;
 }
   
 .item{
@@ -15,15 +16,15 @@ body {
 }
 
 .burgermenu-container{
-  justify-content: right;
   margin-left: auto;
+  margin-right: 40px;
   padding-top: 2.5em;
   padding-inline: 10px;
 }
 
 .burgermenu {
+  position: absolute;
   display: none;
-  justify-content: center;
   opacity: 0.5;
   height: 2.5rem; /* or your preferred height */
   border-radius: 50%;
@@ -31,10 +32,18 @@ body {
 }
 
 .burgermenu-list {
+  position: absolute;
   list-style: none;
   display: none;
-  border: 2px;
-  border-radius: 5px;
+  right: 7px;
+  top: 80px;
+  padding: 15px;
+  justify-content: left;
+  background-color: white;
+  border-style: solid;
+  border-width: 1px;
+  border-color: rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.05); /* Adjust as needed */
 }
 
 .website-Name {
@@ -45,4 +54,27 @@ body {
 
 .website-Email{
     padding: 6px;
+}
+
+.addItem {
+  position: fixed;
+  right: 25px;
+  bottom: 25px;
+  height: 50px;
+  width: 50px;
+  background-color:rgba(0, 0, 0, 0.8);
+  border-radius: 50%;
+  display: inline-block;
+  }
+  .plus {
+    height: 24px;
+    width: 24px;
+    display: inline-block;
+    color: white;
+    font-size: 24px;
+    line-height: 24px;
+    text-align: center;
+  }
+  .plus::before {
+    content: "+";
 }
