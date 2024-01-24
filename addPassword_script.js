@@ -1,9 +1,28 @@
+addEventListener(onload, function(){
+  try{
+    var key = this.window.location.search
+    if(key != null)
+    {console.log(queryString);
+
+    loginInformation = JSON.parse(this.localStorage.getItem(key))}
+
+    this.document.getElementById("username").value = loginInformation.username
+    this.document.getElementById("password").value = loginInformation.password
+    this.document.getElementById("siteLink").value = loginInformation.siteLink
+  }
+
+  finally{
+    
+  }
+})
+
 const savePasswordButton = document.getElementById("savePasswordButton");
 
 savePasswordButton.addEventListener("click", function() {
     let loginInformation = {
         username : document.getElementById("username").value,
-        password : document.getElementById("password").value
+        password : document.getElementById("password").value,
+        siteLink : document.getElementById("siteLink").value
     };
 
     let loginInformation_serialized = JSON.stringify(loginInformation);
