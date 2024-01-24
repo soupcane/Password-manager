@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Password Manager</title>
+        <meta charset="utf-8">
+        <link href="styles.css" rel="stylesheet">
+    </head>
+    <body>
+      <ul>
+        <template>
+          <li>
+            <div class="itemContainer" id="passItem">
+              <div>
+                <div class="website-Name">
+                  <h3 id="WebsiteNameId" style="padding-left: 5px;">Google</h3>
+                </div>
+                  <div class="website-Email">
+                    <p class="text-gray-600">
+                      google@gmail.com
+                    </p>
+                  </div>
+              </div>
+              <div class="dropdown-container">
+                <button class="dropdown" id="dropdownId">
+                  <span class="LeftDot"></span>
+                  <span class="MiddleDot"></span>
+                  <span class="RightDot"></span>
+                </button>
+                <ul class="dropdown-list" id="dropdown-listId" >
+                  <li href="addPassword.html">Edit</li>
+                  <li>Copy Password</li>
+                  <li>Copy Email</li>
+                </ul>
+              </div>
+            </div>
+          </li>
+        </template>
+      </ul>
+    </body>
+      <span class="addItem">
+        <div class="plus"></div>
+      </span>
+    <script src="scripts.js" type="module" defer></script>
+</html>
