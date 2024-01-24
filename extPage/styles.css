@@ -21,14 +21,14 @@ ul{
     background-color: rgba(0, 0, 0, 0.05);
 }
 
-.burgermenu-container{
+.dropdown-container{
   margin-left: auto;
   margin-right: 40px;
   padding-top: 2.5em;
   padding-inline: 10px;
 }
 
-.burgermenu {
+.dropdown {
   position: absolute;
   display: none;
   opacity: 0.5;
@@ -37,7 +37,7 @@ ul{
   padding: 1.13rem; /* or your preferred padding */
 }
 
-.burgermenu-list {
+.dropdown-list {
   position: absolute;
   list-style: none;
   display: none;
