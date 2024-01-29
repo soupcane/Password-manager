@@ -17,7 +17,7 @@ addEventListener(onload, function(){
 })
 
 const savePasswordButton = document.getElementById("savePasswordButton");
-export var ImpKey = [1];
+var ImpKey = "1";
 
 savePasswordButton.addEventListener("click", function() {
     let loginInformation = {
@@ -27,7 +27,7 @@ savePasswordButton.addEventListener("click", function() {
     };
 
     let loginInformation_serialized = JSON.stringify(loginInformation);
-    localStorage.setItem(key, loginInformation_serialized);
+    localStorage.setItem(ImpKey, loginInformation_serialized);
     console.localStorage;
 })
 
