@@ -36,7 +36,6 @@ savePasswordButton.addEventListener("click", function() {
     {
       localStorage.setItem(key, loginInformation_serialized);
       console.localStorage;
-      console.log("HEJSAN")
   }
 
     else{ //Item doesn't exist
