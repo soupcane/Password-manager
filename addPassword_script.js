@@ -1,7 +1,7 @@
 var key
 
 window.onload = (event) =>{
-  try{
+  
     key = this.window.location.search
     key = key.replace("?", "")
     console.log(key)
@@ -14,11 +14,6 @@ window.onload = (event) =>{
       this.document.getElementById("password").value = loginInformation.password;
       this.document.getElementById("siteLink").value = loginInformation.siteLink;
     }
-  }
-
-  finally{
-    
-  }
 }
 
 const savePasswordButton = document.getElementById("savePasswordButton");
