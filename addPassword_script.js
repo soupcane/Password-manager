@@ -1,23 +1,27 @@
-addEventListener(onload, function(){
+var key
+
+window.onload = (event) =>{
   try{
-    var key = this.window.location.search
-    if(key != null)
-    {console.log(queryString);
+    key = this.window.location.search
+    key = key.replace("?", "")
+    console.log(key)
+    
+    if(key != null && key != '') //if there is no key then this is a new item
+    {
+      loginInformation = JSON.parse(this.localStorage.getItem(key))
 
-    loginInformation = JSON.parse(this.localStorage.getItem(key))}
-
-    this.document.getElementById("username").value = loginInformation.username
-    this.document.getElementById("password").value = loginInformation.password
-    this.document.getElementById("siteLink").value = loginInformation.siteLink
+      this.document.getElementById("username").value = loginInformation.username;
+      this.document.getElementById("password").value = loginInformation.password;
+      this.document.getElementById("siteLink").value = loginInformation.siteLink;
+    }
   }
 
   finally{
     
   }
-})
+}
 
 const savePasswordButton = document.getElementById("savePasswordButton");
-export var ImpKey = [1];
 
 savePasswordButton.addEventListener("click", function() {
     let loginInformation = {
@@ -27,8 +31,19 @@ savePasswordButton.addEventListener("click", function() {
     };
 
     let loginInformation_serialized = JSON.stringify(loginInformation);
-    localStorage.setItem(key, loginInformation_serialized);
-    console.localStorage;
+    console.log(key)
+    if(key != null && key != '') //if key is not null (meaning the item already exist) then write over last item with new edited item
+    {
+      localStorage.setItem(key, loginInformation_serialized);
+      console.localStorage;
+      console.log("HEJSAN")
+  }
+
+    else{ //Item doesn't exist
+      key = keyGenerator(); //Generates key for new item
+      console.log("GENTERATED KEY: " + key)
+      localStorage.setItem(key, loginInformation_serialized);
+    }
 })
 
 function showPassword() {
@@ -37,5 +52,24 @@ function showPassword() {
       x.type = "text";
     } else {
       x.type = "password";
-    }
+   }
 }
+
+function keyGenerator() {
+  var chars = 'abcdefghijklmnopqrstuvwxyz1234567890';
+  var keyLength = 12;
+  var generatedKey = "";
+
+  for (var i = 0; i <= keyLength; i++) {
+    var randomNumber = Math.floor(Math.random() * chars.length);
+    generatedKey += chars.substring(randomNumber, randomNumber +1);
+   }
+
+   return generatedKey;
+}
+
+const clearLocalStorageButton = document.getElementById("clearLocalStorageButton")
+
+clearLocalStorageButton.addEventListener("click", function() {
+  localStorage.clear();
+})
