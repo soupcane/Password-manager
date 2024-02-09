@@ -1,13 +1,9 @@
-const dropdown_list = document.getElementById("dropdown-listId");
-const dropdown = document.getElementById("dropdownId");
-const itemContainer = document.getElementById("passItem")
-const itemList = document.getElementById('itemList')
-const savePasswordButton = document.getElementById("savePasswordButton");
-var siteTemplate = document.getElementById('template')
+var template = document.querySelector("#templateId");
+var my_template_clone = template.content.cloneNode(true); // clone the template 
+var my_ul = document.getElementById('uList'); //now you can find the *ul*
 
 import { keys } from "../keys.js";
 var dropdownState = false; 
-var contentloaded = false;
 
 let loginInformation = {
     username : "",
@@ -15,60 +11,43 @@ let loginInformation = {
     siteLink : ""
 };
 
-loginInformation = JSON.parse(localStorage.getItem("1"))
-var passwordData = {WEBSITE: loginInformation.siteLink, EMAIL: loginInformation.username};
+var passwordData_list = [];
+var elementId = 0;
 
-const html =
-`<li>
-    <div class="itemContainer" id="passItem">
-        <div>
-        <div class="website-Name">
-            <h3 id="WebsiteNameId" style="padding-left: 5px;">{WEBSITE}</h3>
-        </div>
-            <div class="website-Email">{EMAIL}</div>
-        </div>
-        <div class="dropdown-container">
-        <button class="dropdown" id="dropdownId">
-            <span class="LeftDot"></span>
-            <span class="MiddleDot"></span>
-            <span class="RightDot"></span>
-        </button>
-        <ul class="dropdown-list" id="dropdown-listId" >
-            <li href="addPassword.html" class="edit">Edit</li>
-            <li class="copyPass">Copy Password</li>
-            <li class="copyEmail">Copy Email</li>
-        </ul>
-        </div>
-    </div>
-</li>`;
-
-function replaceMe(template, data) {
-    const pattern = /{\s*(\w+?)\s*}/g; // {property}
-    return template.replace(pattern, (_, token) => data[token] || '');
-}
-
+keys.forEach(element => {
+    loginInformation = JSON.parse(localStorage.getItem(element))
+    console.log(element);
+    var passwordData = {WEBSITE: loginInformation.siteLink, EMAIL: loginInformation.username };
+    passwordData_list.push(passwordData);
+    elementId++;
+});
 
 window.onload = (event) => {
-    console.log(keys)
-    console.log(loginInformation);
-    siteTemplate = replaceMe(html, passwordData),
-    itemList.insertAdjacentHTML('beforeend', siteTemplate)
-    contentloaded = true;
-    
-    function waitForElm(element) {
-        return new Promise(resolve => {
-            if (document.querySelector(element)) {
-                return resolve(document.querySelector(element));
-            }
-            const observer = new MutationObserver(mutations => {
-                if (document.querySelector(element)) {
-                    observer.disconnect();
-                    resolve(document.querySelector(element));
-                }
-            });
-        });
-    }
-    waitForElm("#itemContainer").then((elm) => {
+    var itemId = 0;
+
+    passwordData_list.forEach(element => {
+        my_template_clone = template.content.cloneNode(true);
+
+        var nameId = my_template_clone.getElementById("WebsiteNameId");
+        var emailId = my_template_clone.getElementById("websiteEmailId");
+        var listItem = my_template_clone.getElementById("listItem");
+        
+        listItem.dataset.index = itemId.toString();
+        itemId++;
+        nameId.innerHTML = element.WEBSITE;
+        emailId.innerHTML = element.EMAIL;
+        
+        my_ul.appendChild(my_template_clone)
+    }); 
+
+    let list = document.querySelectorAll("#listItem")
+    list.forEach(element => {
+        var dropdown = element.querySelector("#dropdown")
+        var dropdown_list = element.querySelector("#dropdown-list")
+        var itemContainer = element.querySelector("#itemContainer")
+        var editButton = element.querySelector("#editButton")
+
+        console.log(element);
         itemContainer.addEventListener(
             "mouseover",
             (event) => {
@@ -76,7 +55,7 @@ window.onload = (event) => {
             },
             false,
         );
-    
+
         itemContainer.addEventListener(
             "mouseleave",
             (event) => {
@@ -86,9 +65,7 @@ window.onload = (event) => {
             },
             false,
         );
-    });
-    
-    waitForElm("#dropdownId").then((elm) => {
+
         dropdown.addEventListener(
             "mousedown",
             (event) => {
@@ -99,5 +76,9 @@ window.onload = (event) => {
             },
             false,
         );
+        editButton.addEventListener('click', function(tab) {
+            window.location.href = `./addPassword.html?${keys[element.dataset.index]}`
+            chrome.tabs.create({url: chrome.runtime.getURL(`./addPassword.html?${keys[element.dataset.index]}`)});
+        });
     });
-};
+}

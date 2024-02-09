@@ -5,33 +5,40 @@
         <meta charset="utf-8">
         <link href="styles.css" rel="stylesheet">
     </head>
-    <template id="template">
-      <li>
-        <div class="itemContainer" id="passItem">
-          <div>
-            <div class="website-Name">
-              <h3 id="WebsiteNameId" style="padding-left: 5px;">Google</h3>
+      <ul id="uList">
+        <template id="templateId">
+          <li id="listItem" data-index="3">
+            <div class="itemContainer" id="itemContainer">
+              <div>
+                <div class="website-Name">
+                    <h3 id="WebsiteNameId" style="padding-left: 5px; overflow: hidden;">{WEBSITE}</h3>
+                </div>
+                    <div id="websiteEmailId" class="website-Email">{EMAIL}</div>
+              </div>
+              <div class="dropdown-container">
+                  <button class="dropdown" id="dropdown">
+                      <span class="LeftDot"></span>
+                      <span class="MiddleDot"></span>
+                      <span class="RightDot"></span>
+                  </button>
+                <ul class="dropdown-list" id="dropdown-list" >
+                  <li id="editButton" class="edit">Edit</li>
+                  <li class="copyPass">Copy Password</li>
+                  <li class="copyEmail">Copy Email</li>
+                </ul>
+              </div>
             </div>
-              <div class="website-Email">google@gmail.com</div>
-          </div>
-          <div class="dropdown-container">
-            <button class="dropdown" id="dropdownId">
-              <span class="LeftDot"></span>
-              <span class="MiddleDot"></span>
-              <span class="RightDot"></span>
-            </button>
-            <ul class="dropdown-list" id="dropdown-listId" >
-              <li href="addPassword.html" class="edit">Edit</li>
-              <li class="copyPass">Copy Password</li>
-              <li class="copyEmail">Copy Email</li>
-            </ul>
-          </div>
-        </div>
-      </li>
-    </template>
+          </li>
+        </template>
+      </ul>
+    <div id="show_list"></div> 
     <body>
-      <ul id="itemList">
-        
+      <ul id="ItemList">
+        <ul class="dropdown-list" id="dropdown-listId" >
+          <li href="addPassword.html" class="edit">Edit</li>
+          <li class="copyPass">Copy Password</li>
+          <li class="copyEmail">Copy Email</li>
+        </ul>
       </ul>
     </body>
       <span class="addItem">
@@ -39,3 +46,4 @@
       </span>
     <script src="scripts.js" type="module" defer></script>
 </html>
+  
