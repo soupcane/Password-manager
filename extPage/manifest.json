@@ -3,8 +3,9 @@
     "version": "1.0.0",
     "manifest_version": 3,
     "author": "Leon, Johannes",
+    "permissions": ["activeTab", "storage"],
     "action":{
         "default_popup": "index.html",
         "default_title": "Password Manager"
-    }   
+    }
 }
