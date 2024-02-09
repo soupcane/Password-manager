@@ -1,10 +1,11 @@
 {
     "name": "Password Manager",
-    "version": "0.8.3",
+    "version": "1.0.0",
     "manifest_version": 3,
     "author": "Leon, Johannes",
+    "permissions": ["activeTab", "storage"],
     "action":{
         "default_popup": "extPage/index.html",
         "default_title": "Password Manager"
-    }   
+    }
 }
