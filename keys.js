@@ -1,3 +1,4 @@
-export let keys = [];
-keys.push("1");
-keys.push("2");
+const keyList = [];
+export default keyList;
+keyList.push('1');
+keyList.push('2');

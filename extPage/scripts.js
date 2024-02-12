@@ -1,84 +1,86 @@
-var template = document.querySelector("#templateId");
-var my_template_clone = template.content.cloneNode(true); // clone the template 
-var my_ul = document.getElementById('uList'); //now you can find the *ul*
+import * as keys from '../keys';
 
-import { keys } from "../keys.js";
-var dropdownState = false; 
+const template = document.querySelector('#templateId');
+let myTemplateClone = template.content.cloneNode(true); // clone the template
+const myUl = document.getElementById('uList');
+
+let dropdownState = false;
 
 let loginInformation = {
-    username : "",
-    password : "",
-    siteLink : ""
+  username: '',
+  password: '',
+  siteLink: '',
 };
 
-var passwordData_list = [];
-var elementId = 0;
+const passwordDataList = [];
+// eslint-disable-next-line no-unused-vars
+let elementId;
 
-keys.forEach(element => {
-    loginInformation = JSON.parse(localStorage.getItem(element))
-    console.log(element);
-    var passwordData = {WEBSITE: loginInformation.siteLink, EMAIL: loginInformation.username };
-    passwordData_list.push(passwordData);
-    elementId++;
+keys.default.forEach((element) => {
+  loginInformation = JSON.parse(localStorage.getItem(element));
+  console.log(element);
+  const passwordData = { WEBSITE: loginInformation.siteLink, EMAIL: loginInformation.username };
+  passwordDataList.push(passwordData);
+  elementId += 1;
 });
 
-window.onload = (event) => {
-    var itemId = 0;
+window.onload = () => {
+  let itemId = 0;
 
-    passwordData_list.forEach(element => {
-        my_template_clone = template.content.cloneNode(true);
+  passwordDataList.forEach((element) => {
+    myTemplateClone = template.content.cloneNode(true);
 
-        var nameId = my_template_clone.getElementById("WebsiteNameId");
-        var emailId = my_template_clone.getElementById("websiteEmailId");
-        var listItem = my_template_clone.getElementById("listItem");
-        
-        listItem.dataset.index = itemId.toString();
-        itemId++;
-        nameId.innerHTML = element.WEBSITE;
-        emailId.innerHTML = element.EMAIL;
-        
-        my_ul.appendChild(my_template_clone)
-    }); 
+    const nameId = myTemplateClone.getElementById('WebsiteNameId');
+    const emailId = myTemplateClone.getElementById('websiteEmailId');
+    const listItem = myTemplateClone.getElementById('listItem');
 
-    let list = document.querySelectorAll("#listItem")
-    list.forEach(element => {
-        var dropdown = element.querySelector("#dropdown")
-        var dropdown_list = element.querySelector("#dropdown-list")
-        var itemContainer = element.querySelector("#itemContainer")
-        var editButton = element.querySelector("#editButton")
+    listItem.dataset.index = itemId.toString();
+    itemId += 1;
+    nameId.innerHTML = element.WEBSITE;
+    emailId.innerHTML = element.EMAIL;
 
-        console.log(element);
-        itemContainer.addEventListener(
-            "mouseover",
-            (event) => {
-                dropdown.style.display = "inline-flex"
-            },
-            false,
-        );
+    myUl.appendChild(myTemplateClone);
+  });
 
-        itemContainer.addEventListener(
-            "mouseleave",
-            (event) => {
-                if (dropdownState == false){
-                    dropdown.style.display = "none";
-                }
-            },
-            false,
-        );
+  const list = document.querySelectorAll('#listItem');
+  list.forEach((element) => {
+    const dropdown = element.querySelector('#dropdown');
+    const dropdownList = element.querySelector('#dropdown-list');
+    const itemContainer = element.querySelector('#itemContainer');
+    const editButton = element.querySelector('#editButton');
 
-        dropdown.addEventListener(
-            "mousedown",
-            (event) => {
-                dropdownState ? 
-                    dropdown_list.style.display = "none" : 
-                    dropdown_list.style.display = "block";
-                dropdownState = !dropdownState
-            },
-            false,
-        );
-        editButton.addEventListener('click', function(tab) {
-            window.location.href = `./addPassword.html?${keys[element.dataset.index]}`
-            chrome.tabs.create({url: chrome.runtime.getURL(`./addPassword.html?${keys[element.dataset.index]}`)});
-        });
+    console.log(element);
+    itemContainer.addEventListener(
+      'mouseover',
+      () => {
+        dropdown.style.display = 'inline-flex';
+      },
+      false,
+    );
+
+    itemContainer.addEventListener(
+      'mouseleave',
+      () => {
+        if (dropdownState === false) {
+          dropdown.style.display = 'none';
+        }
+      },
+      false,
+    );
+
+    dropdown.addEventListener(
+      'mousedown',
+      () => {
+        // eslint-disable-next-line no-unused-expressions
+        dropdownState ? dropdownList.style.display = 'none' : dropdownList.style.display = 'block';
+        dropdownState = !dropdownState;
+      },
+      false,
+    );
+    editButton.addEventListener('click', () => {
+      window.location.href = `./addPassword.html?${keys.default[element.dataset.index]}`;
+      // eslint-disable-next-line no-undef
+      chrome.tabs.create({ url: chrome.runtime.getURL(`./addPassword.html?${keys.default[element.dataset.index]}`) });
     });
-}
+  });
+};
