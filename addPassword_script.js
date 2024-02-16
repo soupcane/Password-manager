@@ -1,14 +1,14 @@
-import * as keys from './keys';
+import {keyList} from './keys.js';
 
-let tempkey;
+console.log(keyList.keys);
+let recieveKey;
 window.onload = () => {
-  tempkey = this.window.location.search;
-  tempkey = tempkey.replace('?', '');
-  console.log(tempkey);
+  recieveKey = window.location.search;
+  recieveKey = recieveKey.replace('?', '');
 
-  if (tempkey != null && tempkey !== '') // if there is no key then this is a new item
+  if (recieveKey != null && recieveKey !== '') // if there is no key then this is a new item
   {
-    loginInformation = JSON.parse(this.localStorage.getItem(tempkey));
+    loginInformation = JSON.parse(this.localStorage.getItem(recieveKey));
 
     this.document.getElementById('username').value = loginInformation.username;
     this.document.getElementById('password').value = loginInformation.password;
@@ -26,15 +26,17 @@ savePasswordButton.addEventListener('click', () => {
   };
 
   const loginInformationSerialized = JSON.stringify(loginInformation);
-  console.log(tempkey);
-  if (tempkey != null && tempkey !== '') // if key is not null (meaning the item already exist) then write over last item with new edited item
+  console.log(recieveKey);
+  if (recieveKey != null && recieveKey !== '') // if key is not null (meaning the item already exist) then write over last item with new edited item
   {
-    localStorage.setItem(tempkey, loginInformationSerialized);
+    localStorage.setItem(recieveKey, loginInformationSerialized);
   }
   else { // Item doesn't exist
-    keys.push(keyGenerator()); // Generates key for new item
-    console.log(`GENERATED KEY: ${keys[keys.length]}`);
-    localStorage.setItem(keys[keys.length], loginInformationSerialized);
+    let tempkey = keyGenerator(); // Generates key for new item
+    keyList.keys.push(tempkey); 
+    console.log(`GENERATED KEY: ${tempkey}`);
+    localStorage.setItem(tempkey, loginInformationSerialized);
+    console.log(keyList.keys);
   }
 });
 

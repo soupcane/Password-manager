@@ -1,5 +1,5 @@
-import * as keys from '../keys';
-
+import {keyList} from '../keys.js';
+console.log(keyList.keys);
 const template = document.querySelector('#templateId');
 let myTemplateClone = template.content.cloneNode(true); // clone the template
 const myUl = document.getElementById('uList');
@@ -13,15 +13,23 @@ let loginInformation = {
 };
 
 const passwordDataList = [];
-// eslint-disable-next-line no-unused-vars
 let elementId;
 
-keys.default.forEach((element) => {
+keyList.keys.forEach((element) => {
   loginInformation = JSON.parse(localStorage.getItem(element));
   console.log(element);
-  const passwordData = { WEBSITE: loginInformation.siteLink, EMAIL: loginInformation.username };
-  passwordDataList.push(passwordData);
-  elementId += 1;
+  if (loginInformation !== null){
+    const passwordData = { WEBSITE: loginInformation.siteLink, EMAIL: loginInformation.username };
+    passwordDataList.push(passwordData);
+    elementId += 1;
+  } else {
+    console.warn('no password data');
+  }
+});
+
+const addButton = document.querySelector('.addItem')
+addButton.addEventListener('click', event =>{
+  chrome.tabs.create({ url: chrome.runtime.getURL(`./addPassword.html`) });
 });
 
 window.onload = () => {
@@ -71,16 +79,16 @@ window.onload = () => {
     dropdown.addEventListener(
       'mousedown',
       () => {
-        // eslint-disable-next-line no-unused-expressions
         dropdownState ? dropdownList.style.display = 'none' : dropdownList.style.display = 'block';
         dropdownState = !dropdownState;
       },
       false,
     );
-    editButton.addEventListener('click', () => {
-      window.location.href = `./addPassword.html?${keys.default[element.dataset.index]}`;
-      // eslint-disable-next-line no-undef
-      chrome.tabs.create({ url: chrome.runtime.getURL(`./addPassword.html?${keys.default[element.dataset.index]}`) });
+    console.log('first')
+    editButton.addEventListener('click', event =>{
+      console.log('second');
+      window.location.href = `../addPassword.html?${keyList.keys[element.dataset.index]}`;
+      chrome.tabs.create({ url: chrome.runtime.getURL(`../addPassword.html?${keyList.keys[element.dataset.index]}`) });
     });
   });
 };
