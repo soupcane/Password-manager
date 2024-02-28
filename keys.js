@@ -1,2 +1,1 @@
-export let keys = [];
-keys.push("1");
+export var keyList = {keys: []};
