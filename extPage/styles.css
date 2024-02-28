@@ -1,3 +1,10 @@
+:root {
+  --primary-color: rgba(0, 0, 0, 0.05);
+  --primary-font-family: sans-serif;
+}
+* {
+  font-family: sans-serif;
+}
 body {
     overflow: visible;
     align-items: center;
@@ -13,9 +20,10 @@ ul{
 }
   
 .itemContainer{
+  position: relative;
   display: flex;
   transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
-  box-shadow: 0 5px 2px 0 rgba(0, 0, 0, 0.05); /* Adjust as needed */
+  box-shadow: 0 5px 2px 0 var(--primary-color); /* Adjust as needed */
   }
   .itemContainer:hover {
     background-color: rgba(0, 0, 0, 0.05);
@@ -23,13 +31,12 @@ ul{
 
 .dropdown-container{
   margin-left: auto;
-  margin-right: 40px;
   padding-top: 2.5em;
   padding-inline: 10px;
 }
 
 .dropdown {
-  position: absolute;
+  position: relative;
   display: none;
   opacity: 0.5;
   height: 2.5rem; /* or your preferred height */
@@ -37,19 +44,24 @@ ul{
   padding: 1.13rem; /* or your preferred padding */
 }
 
+.dropdown > * {
+  position: absolute;
+}
+
 .dropdown-list {
+  right: 10px;
+  z-index: 9999;
   position: absolute;
   list-style: none;
   display: none;
-  right: 7px;
-  top: 80px;
   padding: 15px;
   justify-content: left;
   background-color: white;
   border-style: solid;
   border-width: 1px;
   border-color: rgba(0, 0, 0, 0.05);
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.05); /* Adjust as needed */
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.05); /*Adjust as needed*/ 
+  overflow-y: auto;
 }
 .edit:hover, .copyPass:hover, .copyEmail:hover{
   cursor: pointer;
