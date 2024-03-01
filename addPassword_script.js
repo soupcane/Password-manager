@@ -1,5 +1,5 @@
-import { keys } from "./keys.js"
-let tempkey 
+import { keys } from "./keys.js";
+let tempkey;
 window.onload = (event) =>{
     tempkey = this.window.location.search
     tempkey = tempkey.replace("?", "")
@@ -66,3 +66,7 @@ const clearLocalStorageButton = document.getElementById("clearLocalStorageButton
 clearLocalStorageButton.addEventListener("click", function() {
   localStorage.clear();
 })
+
+function encryptLoginInformation(loginInformation){
+  
+}
