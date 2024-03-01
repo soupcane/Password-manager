@@ -1,6 +1,6 @@
+let keyArr = [];
 (function () { // undviker globala variabler
   const globalKey = 'asdf';
-  let keys = localStorage.getItem(globalKey);
   let recieveKey;
   window.onload = () => {
     recieveKey = window.location.search;
@@ -17,7 +17,6 @@
   };
 
   const savePasswordButton = document.getElementById('savePasswordButton');
-
   savePasswordButton.addEventListener('click', () => {
     let loginInformation = {
       username: document.getElementById('username').value,
@@ -26,17 +25,16 @@
     };
 
     const loginInformationSerialized = JSON.stringify(loginInformation);
-    console.log(recieveKey);
     if (recieveKey != null && recieveKey !== '') {
       localStorage.setItem(recieveKey, loginInformationSerialized);
     } 
     else { // Item doesn't exist
-      let tempkey = [];
-      tempkey.push(keyGenerator()); // Generates key for new item
-      localStorage.setItem(globalKey, tempkey);
-      console.log(`GENERATED KEY: ${tempkey}`);
-      localStorage.setItem(tempkey, loginInformationSerialized);
-      console.log(keys);
+      keyArr.push(keyGenerator()); // Generates key for new item
+      console.log(keyArr);
+      localStorage.setItem(globalKey, JSON.stringify(keyArr));
+      let genKey = keyArr[keyArr.length - 1];
+      console.log(`GENERATED KEY: ${genKey}`);
+      localStorage.setItem(genKey, loginInformationSerialized);
     }
   });
 

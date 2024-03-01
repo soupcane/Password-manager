@@ -14,10 +14,8 @@
 
   const passwordDataList = [];
   let elementId;
-  let keys = [];
-  let asd = JSON.parse(localStorage.getItem(globalKey));
-  console.log(asd);
-  keys.push(JSON.parse(localStorage.getItem(globalKey)));
+  let keys = (JSON.parse(localStorage.getItem(globalKey)));
+  console.log(keys);
   if (keys !== null) {
     keys.forEach((element) => {
       loginInformation = JSON.parse(localStorage.getItem(element));
@@ -30,7 +28,7 @@
         passwordDataList.push(passwordData);
         elementId += 1;
       } else {
-        console.warn('no password data');
+        console.warn('no password info');
       }
     });
   }
