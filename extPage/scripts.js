@@ -91,10 +91,18 @@
         false,
       );
       console.log('first');
+      console.log(keys[element.dataset.index])
+      
       editButton.addEventListener('click', () => {
         console.log('second');
-        window.location.href = `../addPassword.html?${keys[element.dataset.index]}`;
-        chrome.tabs.create({ url: chrome.runtime.getURL(`../addPassword.html?${keys[element.dataset.index]}`) });
+        chrome.tabs.query({url: `chrome-extension://pijdmddgdbnbhmdkkdaojhplhbjfnibi/addPassword.html?${keys[element.dataset.index]}` }, (tabs) => {
+          if (tabs.length > 0) {
+            chrome.tabs.update(tabs[0].id, {active: true});
+          } else {
+            window.location.href = `../addPassword.html?${keys[element.dataset.index]}`;
+            chrome.tabs.create({ url: chrome.runtime.getURL(`../addPassword.html?${keys[element.dataset.index]}`) });
+          }
+        });
       });
     });
   };

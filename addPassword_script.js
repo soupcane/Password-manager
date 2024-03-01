@@ -8,11 +8,11 @@ let keyArr = [];
 
     if (recieveKey != null && recieveKey !== '') // if there is no key then this is a new item
     {
-      loginInformation = JSON.parse(this.localStorage.getItem(recieveKey));
+      let loginInformation = JSON.parse(localStorage.getItem(recieveKey));
 
-      this.document.getElementById('username').value = loginInformation.username;
-      this.document.getElementById('password').value = loginInformation.password;
-      this.document.getElementById('siteLink').value = loginInformation.siteLink;
+      document.getElementById('username').value = loginInformation.username;
+      document.getElementById('password').value = loginInformation.password;
+      document.getElementById('siteLink').value = loginInformation.siteLink;
     }
   };
 

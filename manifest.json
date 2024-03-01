@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "manifest_version": 3,
     "author": "Leon, Johannes",
-    "permissions": ["activeTab", "storage"],
+    "permissions": ["activeTab", "storage", "tabs"],
     "action":{
         "default_popup": "extPage/index.html",
         "default_title": "Password Manager"
