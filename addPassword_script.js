@@ -23,7 +23,6 @@ let keyArr = [];
       password: document.getElementById('password').value,
       siteLink: document.getElementById('siteLink').value,
     };
-
     const loginInformationSerialized = JSON.stringify(loginInformation);
     if (recieveKey != null && recieveKey !== '') {
       localStorage.setItem(recieveKey, loginInformationSerialized);
