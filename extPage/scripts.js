@@ -1,6 +1,5 @@
-(function () { // undviker globala variabler
+(function nonGlobal() { // undviker globala variabler
   const globalKey = 'asdf';
-
   const template = document.querySelector('#templateId');
   let myTemplateClone = template.content.cloneNode(true); // clone the template
   const myUl = document.getElementById('uList');
@@ -12,30 +11,33 @@
     password: '',
     siteLink: '',
   };
-  const passwordDataList = [];
+  let loginObjectList = [];
 
-  let elementId;
   let temp = JSON.parse(localStorage.getItem(globalKey));
   let keys = [];
+
   if (typeof temp === 'string') {
     // If the data is a string, convert it to a string array
     keys = [temp];
   } else {
     keys = temp;
   }
+
   console.log(keys);
+
   if (keys !== null) {
     keys.forEach((element) => {
       loginInformation = JSON.parse(localStorage.getItem(element));
       console.log(element);
+
       if (loginInformation !== null) {
-        let passwordData = {
+        let loginObject = {
           WEBSITE: loginInformation.siteLink,
           PASSWORD: loginInformation.password,
           EMAIL: loginInformation.username,
         };
-        passwordDataList.push(passwordData);
-        elementId += 1;
+
+        loginObjectList.push(loginObject);
       } else {
         console.warn(`no password info in key ${element}`);
       }
@@ -43,6 +45,7 @@
   }
 
   const addButton = document.querySelector('.addItem');
+
   addButton.addEventListener('click', () => {
     chrome.tabs.create({ url: chrome.runtime.getURL('./addPassword.html') });
   });
@@ -50,7 +53,7 @@
   window.onload = () => {
     let itemId = 0;
 
-    passwordDataList.forEach((element) => {
+    loginObjectList.forEach((element) => {
       myTemplateClone = template.content.cloneNode(true);
 
       const nameId = myTemplateClone.getElementById('WebsiteNameId');
@@ -65,34 +68,46 @@
       myUl.appendChild(myTemplateClone);
     });
 
-    const list = document.querySelectorAll('#listItem');
-    list.forEach((element) => {
-      const dropdown = element.querySelector('#dropdown');
-      const dropdownList = element.querySelector('#dropdown-list');
-      const itemContainer = element.querySelector('#itemContainer');
-      const editButton = element.querySelector('#editButton');
-      const deleteButton = element.querySelector('#deleteButton');
-      const copyPassword = element.querySelector('#copyPassId');
-      const copyUsername = element.querySelector('#copyEmailId');
+    const listItems = document.querySelectorAll('#listItem');
+    const searchbar = document.getElementById('searchId');
 
-      console.log(element);
-      itemContainer.addEventListener(
-        'mouseover',
-        () => {
-          dropdown.style.display = 'inline-flex';
-        },
-        false,
-      );
+    searchbar.addEventListener('onkeyup', () => {
+      const filter = searchbar.txtValue.toUpperCase();
 
-      itemContainer.addEventListener(
-        'mouseleave',
-        () => {
-          if (dropdownState === false) {
-            dropdown.style.display = 'none';
-          }
-        },
-        false,
-      );
+      for (i = 0; i < li.length; i += 1) {
+        txtValue = loginObjectList[i].WEBSITE;
+
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+          listItems[i].style.display = '';
+        } else {
+          listItems[i].style.display = 'none';
+        }
+      }
+    })
+
+    listItems.forEach((element) => {
+      let dropdown; let dropdownList; let itemContainer; let editButton; let deleteButton; let copyPassword; let copyUsername;
+
+      dropdown = element.querySelector('#dropdown');
+      dropdownList = element.querySelector('#dropdown-list');
+      itemContainer = element.querySelector('#itemContainer');
+      editButton = element.querySelector('#editButton');
+      deleteButton = element.querySelector('#deleteButton');
+      copyPassword = element.querySelector('#copyPassId');
+      copyUsername = element.querySelector('#copyEmailId');
+
+      itemContainer.addEventListener('mouseover', mouseover, false);
+      itemContainer.addEventListener('mouseleave', mouseleave, false)
+
+      function mouseover() {
+        dropdown.style.display = 'inline-flex';
+      }
+
+      function mouseleave() {
+        if (dropdownState === false) {
+          dropdown.style.display = 'none';
+        }
+      }
 
       dropdown.addEventListener(
         'mousedown',
@@ -106,6 +121,7 @@
       console.log(keys[element.dataset.index]);
 
       let elementIndex = element.dataset.index;
+
       editButton.addEventListener('click', () => {
         console.log('second');
         chrome.tabs.query({ url: `chrome-extension://pijdmddgdbnbhmdkkdaojhplhbjfnibi/addPassword.html?${keys[elementIndex]}` }, (tabs) => {
@@ -117,23 +133,28 @@
           }
         });
       });
+
       deleteButton.addEventListener('click', () => {
         let currentKeys = JSON.parse(localStorage.getItem('asdf'));
+
         localStorage.removeItem(currentKeys[elementIndex]);
         currentKeys.splice(elementIndex, 1);
         console.log(currentKeys);
         localStorage.setItem(globalKey, JSON.stringify(currentKeys));
-        for (let i = element.dataset.index; i < currentKeys.length - 1; i += 1) {
-          list[i].dataset.index -= 1;
+
+        for (let i = elementIndex; i < currentKeys.length - 1; i += 1) {
+          listItems[i].dataset.index -= 1;
         }
       });
 
       copyPassword.addEventListener('click', () => {
-        let passwordToCopy = passwordDataList[element.dataset.index].PASSWORD;
+        let passwordToCopy = loginObjectList[elementIndex].PASSWORD;
+
         navigator.clipboard.writeText(passwordToCopy);
       });
       copyUsername.addEventListener('click', () => {
-        let usernameToCopy = passwordDataList[element.dataset.index].EMAIL;
+        let usernameToCopy = loginObjectList[elementIndex].EMAIL;
+
         navigator.clipboard.writeText(usernameToCopy);
       });
     });

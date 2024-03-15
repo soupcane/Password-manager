@@ -1,9 +1,8 @@
-let keyArr = [];
-(function () { // undviker globala variabler
-  const globalKey = 'asdf';
-  let recieveKey;
+(function nonGlobal() { // undviker globala variabler
+  let globalKey = 'asdf';
+  let recieveKey = window.location.search;
+
   window.onload = () => {
-    recieveKey = window.location.search;
     recieveKey = recieveKey.replace('?', '');
 
     if (recieveKey != null && recieveKey !== '') // if there is no key then this is a new item
@@ -15,8 +14,18 @@ let keyArr = [];
       document.getElementById('siteLink').value = loginInformation.siteLink;
     }
   };
+  const passwordInput = document.getElementById('password');
+  const showPasswordButton = document.querySelector('.showPassword');
 
+  showPasswordButton.addEventListener('click', () => {
+    if (passwordInput.getAttribute('type') === 'password') {
+      passwordInput.setAttribute('type', 'text');
+    } 
+    else passwordInput.setAttribute('type', 'password');
+  });
   const savePasswordButton = document.getElementById('savePasswordButton');
+  let keyArr = [];
+
   savePasswordButton.addEventListener('click', () => {
     let loginInformation = {
       username: document.getElementById('username').value,
@@ -24,6 +33,7 @@ let keyArr = [];
       siteLink: document.getElementById('siteLink').value,
     };
     const loginInformationSerialized = JSON.stringify(loginInformation);
+
     if (recieveKey != null && recieveKey !== '') {
       localStorage.setItem(recieveKey, loginInformationSerialized);
     } 
@@ -32,6 +42,7 @@ let keyArr = [];
       console.log(keyArr);
       localStorage.setItem(globalKey, JSON.stringify(keyArr));
       let genKey = keyArr[keyArr.length - 1];
+
       console.log(`GENERATED KEY: ${genKey}`);
       localStorage.setItem(genKey, loginInformationSerialized);
     }
@@ -44,15 +55,10 @@ let keyArr = [];
 
     for (let i = 0; i <= keyLength; i += 1) {
       let randomNumber = Math.floor(Math.random() * chars.length);
+
       generatedKey += chars.substring(randomNumber, randomNumber + 1);
     }
 
     return generatedKey;
   }
-
-  const clearLocalStorageButton = document.getElementById('clearLocalStorageButton');
-
-  clearLocalStorageButton.addEventListener('click', () => {
-    localStorage.clear();
-  });
 }());
