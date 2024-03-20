@@ -74,8 +74,9 @@ ul{
   box-shadow: 0 2px 2px 0 --primary-color; /*Adjust as needed*/ 
   overflow-y: auto;
 }
-.delete:hover, .edit:hover, .copyPass:hover, .copyEmail:hover{
+.dropdown-list li:hover {
   cursor: pointer;
+  background-color: #eee;
 }
 
 .website-Name {

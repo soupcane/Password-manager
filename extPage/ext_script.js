@@ -71,10 +71,12 @@
     const listItems = document.querySelectorAll('#listItem');
     const searchbar = document.getElementById('searchId');
 
-    searchbar.addEventListener('onkeyup', () => {
-      const filter = searchbar.txtValue.toUpperCase();
+    searchbar.addEventListener('input', () => {
+      console.log('searchbar input registered');
+      let txtValue = '';
+      const filter = searchbar.value.toUpperCase();
 
-      for (i = 0; i < li.length; i += 1) {
+      for (let i = 0; i < listItems.length; i += 1) {
         txtValue = loginObjectList[i].WEBSITE;
 
         if (txtValue.toUpperCase().indexOf(filter) > -1) {
@@ -83,7 +85,7 @@
           listItems[i].style.display = 'none';
         }
       }
-    })
+    });
 
     listItems.forEach((element) => {
       let dropdown; let dropdownList; let itemContainer; let editButton; let deleteButton; let copyPassword; let copyUsername;
@@ -97,7 +99,7 @@
       copyUsername = element.querySelector('#copyEmailId');
 
       itemContainer.addEventListener('mouseover', mouseover, false);
-      itemContainer.addEventListener('mouseleave', mouseleave, false)
+      itemContainer.addEventListener('mouseleave', mouseleave, false);
 
       function mouseover() {
         dropdown.style.display = 'inline-flex';

@@ -4,8 +4,18 @@
     "manifest_version": 3,
     "author": "Leon, Johannes",
     "permissions": ["activeTab", "storage", "tabs"],
+    "content_scripts": [
+        {
+            "matches": ["*://*/*"],
+            "run_at": ["document_end"],
+            "js": ["content_script.js"]
+        }
+    ],
     "action":{
         "default_popup": "extPage/index.html",
         "default_title": "Password Manager"
-    }
+    },
+    "content_security_policy":{
+        "extension_pages": "default-src 'self'"
+}
 }
