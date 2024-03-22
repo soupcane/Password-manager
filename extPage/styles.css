@@ -3,7 +3,7 @@
   --primary-font-family: sans-serif;
 }
 * {
-  font-family: sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 body {
     overflow: visible;
@@ -15,6 +15,17 @@ body {
 var {
   font-style: normal;
 }
+
+.searchItem{
+  text-indent: 10px;
+  border-style: ridge;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  border-radius: 16px;
+  border-color:rgba(0, 0, 0, 0.6);
+  height: 33px;
+  width: 60vw;
+}
+
 ul{
   padding: 0px
 }
@@ -26,7 +37,7 @@ ul{
   box-shadow: 0 5px 2px 0 var(--primary-color); /* Adjust as needed */
   }
   .itemContainer:hover {
-    background-color: rgba(0, 0, 0, 0.05);
+    background-color: var(--primary-color);
 }
 
 .dropdown-container{
@@ -60,11 +71,12 @@ ul{
   border-style: solid;
   border-width: 1px;
   border-color: rgba(0, 0, 0, 0.05);
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.05); /*Adjust as needed*/ 
+  box-shadow: 0 2px 2px 0 --primary-color; /*Adjust as needed*/ 
   overflow-y: auto;
 }
-.edit:hover, .copyPass:hover, .copyEmail:hover{
+.dropdown-list li:hover {
   cursor: pointer;
+  background-color: #eee;
 }
 
 .website-Name {
@@ -88,23 +100,19 @@ ul{
   display: inline-block;
   }
   .plus {
-
     display: inline-flex;
     padding: 0px;
     margin: 0px;
     color: #ffffff;
     font-size: 44px;
-    line-height: 30px;
     align-items: center;
     justify-content: center;
     width: 100%;
     height: 100%;
   }
   .plus::before {
-    padding: 0px;
-    margin: 0px;
     content: "+";
-
+    margin-bottom: 8px;
   }
   .addItem:hover{
     background-color: rgba(0, 0, 0, 0.7);

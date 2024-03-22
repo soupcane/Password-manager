@@ -3,16 +3,24 @@
     "version": "1.0.0",
     "manifest_version": 3,
     "author": "Leon, Johannes",
-    "permissions": ["activeTab", "storage"],
+    "permissions": ["activeTab", "storage", "tabs"],
     "content_scripts": [
         {
-          "matches": ["<all_urls>"],
-          "js": ["content.js"]
+            "matches": ["https://*/*"],
+            "run_at": ["document_end"],
+            "js": ["/content_script/content_script.js"],
+            "css": ["/content_script/content_style.css"]
         }
-      ],
-    
+    ],
+    "background": {
+        "service_worker": ["background-script.js"],
+        "type": "module"
+    },
     "action":{
         "default_popup": "extPage/index.html",
         "default_title": "Password Manager"
+    },
+    "content_security_policy":{
+        "extension_pages": "default-src 'self'"
     }
 }

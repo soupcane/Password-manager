@@ -5,15 +5,20 @@
         <meta charset="utf-8">
         <link href="styles.css" rel="stylesheet">
     </head>
+    <section>
+      <div>
+        <input class="searchItem" id="searchId" type="text" placeholder="Search">
+      </div>
+    </section>
       <ul id="uList">
         <template id="templateId">
           <li id="listItem" data-index="3">
             <div class="itemContainer" id="itemContainer">
               <div>
                 <div class="website-Name">
-                    <h3 id="WebsiteNameId" style="padding-left: 5px; overflow: hidden;">{WEBSITE}</h3>
+                    <h3 id="WebsiteNameId" style="padding-left: 5px; overflow: hidden;">Website</h3>
                 </div>
-                    <div id="websiteEmailId" class="website-Email">{EMAIL}</div>
+                    <div id="websiteEmailId" class="website-Email">Email</div>
               </div>
               <div class="dropdown-container">
                   <button class="dropdown" id="dropdown">
@@ -23,27 +28,19 @@
                   </button>
                 <ul class="dropdown-list" id="dropdown-list" >
                   <li id="editButton" class="edit">Edit</li>
-                  <li class="copyPass">Copy Password</li>
-                  <li class="copyEmail">Copy Email</li>
+                  <li id="deleteButton" class="delete">Delete</li>
+                  <li id="copyPassId" class="copyPass">Copy Password</li>
+                  <li id="copyEmailId" class="copyEmail">Copy Email</li>
                 </ul>
               </div>
             </div>
           </li>
         </template>
       </ul>
-    <div id="show_list"></div> 
-    <body>
-      <ul id="ItemList">
-        <ul class="dropdown-list" id="dropdown-listId" >
-          <li class="edit">Edit</li>
-          <li class="copyPass">Copy Password</li>
-          <li class="copyEmail">Copy Email</li>
-        </ul>
-      </ul>
     </body>
       <span class="addItem">
         <div class="plus"></div>
       </span>
-    <script src="scripts.js" type="module" defer></script>
+    <script src="ext_script.js" type="module" defer></script>
 </html>
   
