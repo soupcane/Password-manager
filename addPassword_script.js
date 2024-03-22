@@ -58,7 +58,7 @@
 
       generatedKey += chars.substring(randomNumber, randomNumber + 1);
     }
-
     return generatedKey;
   }
 }());
+

@@ -1,7 +1,7 @@
 //This code is not finished yet and does NOT work
 //import {keyList} from '../keys.js';
 (async() => {
-    const src = chrome.extension.getURL('../keys.js');
+    const src = chrome.extension.getURL('keys.js');
     const contentScript = await import(src);
     contentScript.keys();
 })();
