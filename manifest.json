@@ -8,12 +8,12 @@
         {
             "matches": ["https://*/*"],
             "run_at": ["document_end"],
-            "js": ["/content_scripts/content_script.js"],
-            "css": ["/content_script/"]
+            "js": ["/content_script/content_script.js"],
+            "css": ["/content_script/content_style.css"]
         }
     ],
     "background": {
-        "scripts": ["background-script.js"],
+        "service_worker": ["background-script.js"],
         "type": "module"
     },
     "action":{
