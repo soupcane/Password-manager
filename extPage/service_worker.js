@@ -1,4 +1,4 @@
-//importScripts("FileSaver.js");
+
 
 var reallyLongString = GenerateCryptKey();
 console.log(reallyLongString);

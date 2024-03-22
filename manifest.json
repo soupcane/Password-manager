@@ -7,14 +7,14 @@
     "content_scripts": [
         {
             "matches": ["https://*/*"],
-            "run_at": ["document_end"],
-            "js": ["/content_script/content_script.js"],
-            "css": ["/content_script/content_style.css"]
+            "run_at": "document_end",
+            "js": ["content script/content_script.js"],
+            "css": ["content script/content_style.css"]
         }
     ],
     "background": {
-        "service_worker": ["background-script.js"],
-        "type": "module"
+      "service_worker": "extPage/service_worker.js",
+      "type": "module"
     },
     "action":{
         "default_popup": "extPage/index.html",
