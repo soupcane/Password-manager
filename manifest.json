@@ -6,16 +6,21 @@
     "permissions": ["activeTab", "storage", "tabs"],
     "content_scripts": [
         {
-            "matches": ["*://*/*"],
+            "matches": ["https://*/*"],
             "run_at": ["document_end"],
-            "js": ["content_script.js"]
+            "js": ["/content_scripts/content_script.js"],
+            "css": ["/content_script/"]
         }
     ],
+    "background": {
+        "scripts": ["background-script.js"],
+        "type": "module"
+    },
     "action":{
         "default_popup": "extPage/index.html",
         "default_title": "Password Manager"
     },
     "content_security_policy":{
         "extension_pages": "default-src 'self'"
-}
+    }
 }
