@@ -5,7 +5,6 @@
   const myUl = document.getElementById('uList');
 
   let dropdownState = false;
-
   let loginInformation = {
     username: '',
     password: '',
@@ -26,9 +25,9 @@
   console.log(keys);
 
   if (keys !== null) {
-    keys.forEach((element) => {
-      loginInformation = JSON.parse(localStorage.getItem(element));
-      console.log(element);
+    keys.forEach((key) => {
+      loginInformation = JSON.parse(localStorage.getItem(key));
+      console.log(key);
 
       if (loginInformation !== null) {
         let loginObject = {
@@ -39,7 +38,7 @@
 
         loginObjectList.push(loginObject);
       } else {
-        console.warn(`no password info in key ${element}`);
+        console.warn(`no password info in key ${key}`);
       }
     });
   }
