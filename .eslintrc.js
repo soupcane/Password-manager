@@ -9,9 +9,7 @@ module.exports = {
       env: {
         node: true,
       },
-      files: [
-        '.eslintrc.{js,cjs}',
-      ],
+      files: ['.eslintrc.{js,cjs}'],
       parserOptions: {
         sourceType: 'script',
       },
@@ -20,10 +18,14 @@ module.exports = {
   parserOptions: {
     ecmaVersion: 'latest',
   },
+  plugins: [
+    '@stylistic',
+  ],
   rules: {
     'linebreak-style': 0,
     'prefer-const': 'off',
     'no-use-before-define': 'off',
-    'no-undef': 'off',
+    '@stylistic/no-undef': 'off',
+    '@stylistic/indent': ['error', 2],
   },
 };

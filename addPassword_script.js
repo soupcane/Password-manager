@@ -1,14 +1,18 @@
-(function nonGlobal() { // undviker globala variabler
+(function nonGlobal() { // avoids global varibles
   let globalKey = 'asdf';
-  let recieveKey = window.location.search;
+// The key for the login information is located in the url. The line below gets the key from the URL
+  let recieveKey = window.location.search; 
 
-  window.onload = () => {
+  // When the page loads in the code block below is ran.
+  window.onload = () => { 
     recieveKey = recieveKey.replace('?', '');
 
     if (recieveKey != null && recieveKey !== '') // if there is no key then this is a new item
     {
+      // Uses the key to get the login information stored in local.storage and parses it to get it in the right format
       let loginInformation = JSON.parse(localStorage.getItem(recieveKey));
 
+      // Code below fills out the loginInformation fields
       document.getElementById('username').value = loginInformation.username;
       document.getElementById('password').value = loginInformation.password;
       document.getElementById('siteLink').value = loginInformation.siteLink;
@@ -27,11 +31,13 @@
   let keyArr = [];
 
   savePasswordButton.addEventListener('click', () => {
+    // Saves all the informtaion in the fields in this object
     let loginInformation = {
       username: document.getElementById('username').value,
       password: document.getElementById('password').value,
       siteLink: document.getElementById('siteLink').value,
     };
+    // login information is stringified because local.storage only takes strings
     const loginInformationSerialized = JSON.stringify(loginInformation);
 
     if (recieveKey != null && recieveKey !== '') {
@@ -39,7 +45,6 @@
     } 
     else { // Item doesn't exist
       keyArr.push(keyGenerator()); // Generates key for new item
-      console.log(keyArr);
       localStorage.setItem(globalKey, JSON.stringify(keyArr));
       let genKey = keyArr[keyArr.length - 1];
 
@@ -61,4 +66,3 @@
     return generatedKey;
   }
 }());
-
