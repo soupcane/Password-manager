@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "manifest_version": 3,
     "author": "Leon, Johannes",
-    "permissions": ["activeTab", "storage", "tabs"],
+    "permissions": ["activeTab", "storage", "tabs", "downloads"],
     "content_scripts": [
         {
             "matches": ["https://*/*"],
