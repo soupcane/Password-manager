@@ -95,14 +95,15 @@
       }
     });
     // initializes the variables for storing accessed elements
-    let dropdown;
-    let dropdownList;
-    let itemContainer;
-    let editButton;
-    let deleteButton;
-    let copyPassword;
-    let copyUsername;
     listItems.forEach((element) => {
+      let dropdown;
+      let dropdownList;
+      let itemContainer;
+      let editButton;
+      let deleteButton;
+      let copyPassword;
+      let copyUsername;
+
       // accesses various nodes in a list item
       dropdown = element.querySelector('#dropdown');
       dropdownList = element.querySelector('#dropdown-list');
@@ -149,7 +150,7 @@
         // check if the tab already exists
         chrome.tabs.query(
           {
-            url: chrome.runtime.getURL(`./addPassword.html?${keys[elementIndex]}`),
+            url: chrome.runtime.getURL(`../addPassword.html?${keys[elementIndex]}`),
           },
           (tabs) => {
             // dont create a new tab if one already exists, instead focus to it
@@ -159,9 +160,9 @@
               // if the tab doesnt exist, create a new one with the key for the login item to modify included in the URL
               // the key is included so that the login data can be accessed on the page too.
             } else {
-              window.location.href = `./addPassword.html?${keys[elementIndex]}`;
+              window.location.href = `../addPassword.html?${keys[elementIndex]}`;
               chrome.tabs.create({
-                url: chrome.runtime.getURL(`./addPassword.html?${keys[elementIndex]}`),
+                url: chrome.runtime.getURL(`../addPassword.html?${keys[elementIndex]}`),
               });
             }
           },
@@ -175,13 +176,13 @@
         // deletes the JSON item of the specified element
         localStorage.removeItem(currentKeys[elementIndex]);
 
-        //removes the corresponding key from the list
+        // removes the corresponding key from the list
         currentKeys.splice(elementIndex, 1);
 
         // replaces the list of keys with the modified one
         localStorage.setItem(globalKey, JSON.stringify(currentKeys));
-        
-        // loops through all the elements after the removed one and decrease the index by one
+
+        // loops through all the list items after the removed one, decreasing the index property by one on each
         for (let i = elementIndex; i < currentKeys.length - 1; i += 1) {
           listItems[i].dataset.index -= 1;
         }
