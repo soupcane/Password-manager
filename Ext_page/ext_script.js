@@ -20,7 +20,6 @@
   // temporary variable with all login item keys
   const temp = JSON.parse(localStorage.getItem(globalKey));
   let keys = [];
-
   // If the data is a string, convert it to a string array
   // this is for when you store a single key which gets stringified in the JSON as a string instead of an array
   if (typeof temp === 'string') {
@@ -114,16 +113,16 @@
       copyUsername = element.querySelector('#copyEmailId');
 
       // display the dropdown button for a login item if mouse is hovering over it
-      itemContainer.addEventListener('mouseover', mouseover, false);
+      itemContainer.addEventListener('mouseover', displayDropdown, false);
 
       // if mouse stops hovering over the element, dont display the dropdown button
-      itemContainer.addEventListener('mouseleave', mouseleave, false);
+      itemContainer.addEventListener('mouseleave', hideDropdown, false);
 
-      function mouseover() {
+      function displayDropdown() {
         dropdown.style.display = 'inline-flex';
       }
 
-      function mouseleave() {
+      function hideDropdown() {
         if (dropdownOpened === false) {
           dropdown.style.display = 'none';
         }
