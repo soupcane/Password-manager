@@ -25,7 +25,7 @@ module.exports = {
     'linebreak-style': 0,
     'prefer-const': 'off',
     'no-use-before-define': 'off',
-    '@stylistic/no-undef': 'off',
+    'no-undef': 'off',
     '@stylistic/indent': ['error', 2],
   },
 };

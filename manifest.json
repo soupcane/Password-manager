@@ -6,7 +6,7 @@
     "permissions": ["activeTab", "storage", "tabs", "downloads"],
 
     "action":{
-        "default_popup": "extPage/index.html",
+        "default_popup": "Ext_page/ext_popup.html",
         "default_title": "Password Manager"
     }
 }

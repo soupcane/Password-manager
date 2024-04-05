@@ -50,7 +50,7 @@
   const addButton = document.querySelector('.addItem');
   // when the add password button is clicked, create a new tab in chrome with the password site opened
   addButton.addEventListener('click', () => {
-    chrome.tabs.create({ url: chrome.runtime.getURL('./addPassword.html') });
+    chrome.tabs.create({ url: chrome.runtime.getURL('./Password_page/password.html') });
   });
 
   window.onload = () => {
@@ -150,7 +150,9 @@
         // check if the tab already exists
         chrome.tabs.query(
           {
-            url: chrome.runtime.getURL(`../addPassword.html?${keys[elementIndex]}`),
+            url: chrome.runtime.getURL(
+              `chrome-extension://pijdmddgdbnbhmdkkdaojhplhbjfnibi/Password_page/password.html?${keys[elementIndex]}`,
+            ),
           },
           (tabs) => {
             // dont create a new tab if one already exists, instead focus to it
@@ -160,9 +162,9 @@
               // if the tab doesnt exist, create a new one with the key for the login item to modify included in the URL
               // the key is included so that the login data can be accessed on the page too.
             } else {
-              window.location.href = `../addPassword.html?${keys[elementIndex]}`;
+              window.location.href = `./Password_page/password.html?${keys[elementIndex]}`;
               chrome.tabs.create({
-                url: chrome.runtime.getURL(`../addPassword.html?${keys[elementIndex]}`),
+                url: chrome.runtime.getURL(`./Password_page/password.html?${keys[elementIndex]}`),
               });
             }
           },
